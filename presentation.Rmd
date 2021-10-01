@@ -1,0 +1,431 @@
+---
+title: "Five lessons we learnt"
+subtitle: "Standardising open data in Official Statistics"
+author: "Cam Race, Statistician, Department for Education"
+date: September 30, 2021
+output: 
+  ioslides_presentation:
+    incremental: true
+---
+
+## Overview
+
+- Who are we
+
+- Where we started 
+
+- How we decided to change
+
+- Five key lessons we learnt
+
+- Where we are now
+
+- What's coming up next
+
+- Tips to takeaway
+
+<div class="notes">
+A bit about Official Statistics and the area I work in, the work that we do and the impact that has
+
+Where we started, the problems we had 
+
+The state of our data and how we decided to radically change our approach
+
+How we went about changing our approach, and I'll tell this via five of the biggest lessons that we learnt along way, my hope is that we learnt these the hard way, so you don't have to
+
+Where we are now, the achievements we've made and value gained, I'll also do a quick demo of our service and an example before/after for one of our publications
+
+Where we go next, how we plan to keep building on our improvements
+
+Recap of the top tips from our story, and pointers for where to dive into this a bit deeper
+</div>
+
+
+## Who are we
+
+- We collect, analyse and publish data as Official Statistics
+
+- 65 publications with around 80-90 releases a year
+
+- Publicly available, wide variety of users
+
+- Key source of open data
+
+- Our area: 100+ statisticians, plus even more analyst and digital colleagues
+
+- My team: 2/3 statisticians plus 5/6 developers
+
+
+<div class="notes">
+
+Involved through the whole process though my area focusses on the end product we deliver. We are an official government source and are expected carry a certain standard of quality, some are badged as National statistics, which have reached an even higher level and have been independently assessed for quality and rigour in our processes by the office for statistics regulation
+
+We publish statistics on everything education, from take up of childcare schemes, through statistics on the proportions of pupils who got a place at their preferred school, statistics on teacher training courses and the workforce in the education sector, pupil to teacher ratios, right through to how people are doing after they leave education, graduate salaries and longitudinal outcomes
+
+This last year you can double that number of releases as we've done a number of weekly and fortnightly updates through the pandemic on attendance in schools, mass testing in higher education, and even the supply of laptops and devices to local authorities and schools to ensure everyone is connected
+
+Anyone can go online and see what we publish the analysis and reports we produce, for example the media will often pickup on stories and trends, local authorities and schools use it for operational purposes, and academics use our data for their own further research. This is before we get into the role our statistics play in informing policy within the department and across government
+
+Relied on as an authoritative source of open data, impacting the lives of millions of people everyday, with a number of jobs relying on the data we provide
+
+For an idea of scale, we have over 100 statisticians in our area alone, and we work with many more data engineers, software developers and operations colleagues
+
+My team is a central one, setting standards, and providing support across the statisticians. We also have a team of around 5/6 developers, testers, designer and user research who have built and maintain our dissemination platform we now publish our statistics on
+
+My personal role has changed a fair bit in the 3 years I've been at DfE. I started off as one of the statisticians working on producing a publication on local authority and school spending as well as providing data to other parts of the DfE to be used for school funding and grant allocation. Then I moved to this central team around two and a half years ago to lead on this standardisation of data. During that time I've done various things from setting up and pushing the analytics for the new dissemination platform we now use to publish (Explore Education Statistics), implementing RAP (reproducible analytical pipelines), and most recently stepping up to the lead the team and be Product Owner of Explore Education Statistics. Though throughout all of this I've led on designing, implementing, maintaining and further developing the standards for our open data.
+
+</div>
+
+## Where we started
+
+- PDF reports and collections of excel tables
+
+- Working in silos
+
+- Inconsistent data
+
+- Inaccessible data
+
+- Poor humans and for machines
+
+- Unhappy users whose needs were not being met
+
+<div class="notes">
+
+Around 2/3 years ago we were publishing PDF reports and disparate collections of excel tables on .gov.uk 
+
+All of the publication teams were working into their own silos churning out their tables in their own way
+
+Lead to data that was inconsistent, it followed different structures, had different conventions for symbols for no data, the same variables were labelled differently
+
+Also data that is inaccessible, I don't have to talk too much about how inaccessible excel spreadsheets can be, though if you're unsure Hannah Thomas from the ONS did a fantastic GSS (Government statistical service) blog on this recently, giving exercises you can do to recreate the experience some people go through when trying to use poorly designed excel spreadsheets while using screen readers and other assistive technology
+
+Further to this, the data was also inaccesible in that it was hard to find, it was inconsistently stored and broken up in different ways, it was called different things, metadata was often missing entirely and where it did exist it didn't follow a standard form.
+
+Another major issue in this area was that our tables were being designed for humans, and no consideration was being given to how machine-readable it was, so our data was particularly difficult to pick up and reuse for secondary analysis or to pipe into dashboards and other products
+
+Ultimately this all left us with unhappy users, and numerous groups of users whose needs were not being met at all. A number of statisticians in our area were frustrated by this, and eventually a couple of people in our area started to challenge the state we in
+
+</div>
+
+## How we decided to change
+
+- First principles
+
+- Why are we here
+
+- Discovery: who are our users
+
+  - External expert
+  
+  - External non-expert
+  
+  - Internal non-expert
+  
+  - Internal expert
+
+<div class="notes">
+
+Going back to the fundamentals of what we are doing
+
+Why are we here - always a really key question to always ask
+
+Understanding the needs of the users is critical before making any decisions on what to do. We recognised things could be a lot better and rather than start to speculate or change things ourselves we went out to our users and got them to tell us what they wanted to see. We ran a 12 week discovery, identifying our different user groups and their varying needs, collating those together to form the picture of what we needed to do to serve their needs. The discovery report is published and available on .gov.uk, search 'dfe dissemination discovery', that's 'dfe dissemination discovery' in google, and you should find it.
+
+We found that we had four broad user groups (with many subgroups) which may seem obvious with hindsight, though I can tell you that until it's laid out explicity we never fully appreciated just how much their needs varied
+
+External experts, and to quote our discovery report, these are best described as the conduit between DfE statistics and the public. These tend to align with the 'Expert analyst' persona and are generally skilled analysts in Local authorities, non-government organisations and the media.
+
+Our second group are the non-expert external consumers, these tend to align with the 'inquiring citizen' persona, and make up a wide section of society from school governors to parents, marketeers to the wider public. Currently this group is highly reliant on the interpretation and analysis of others as our statistics were pretty inpenetrable
+
+The third group is non-expert internal consumers (you might be able to see the pattern here), and these tend to correlate with the 'Information forager' persona, predominantly these are special advisors (or SPADs), policy officals and our internal press office.
+
+Finally we get to, our expert internal consumers and the producers themselves, these are the experts the analysts within the department who either produce the statistics or produce secondary analysis for other colleagues.
+
+What were the pain points and issues for each group?
+
+Our external experts were particularly struggling with our inconsistency and lack of machine readable data.
+
+Our non-expert external consumers often weren't even aware of the data that was available and mostly only had interactions through secondary sources.
+
+Our non-expert internal consumers had issues getting access to the information they needed within the time pressures they worked to, and were also conscious of the burden they were placing on the producers of the statistics.
+
+Our expert internal users key issues were time pressure, and wasting time on repetitive tasks such as producing excel tables (or indeed trying to extract data from them) and cleaning data.
+
+Once, and only once we had this picture we could then start to plan how we could better meet all of these varying needs in the best way possible
+
+Then once we had ideas for the ideal of where we want to go to, we then had to assess where we were at, why were doing things in the way that we were at that point and work out a plan for changing
+
+</div>
+
+## What we decided to do
+
+- Focus on improving our self serve model
+
+- Build a new bespoke platform that ran off our open data
+
+- Standardise our open data structure
+
+- Build a central unit supporting statisticians and setting standards
+
+- Work iteratively, getting regular feedback on our progress
+
+<div class="notes">
+
+We already had a kind of self-serve model as we published our reports and data openly. However FOIs were still common and in general what we published was difficult to use, especially in terms of the data.
+
+To aid this, we built our own bespoke data dissemination platform, that would include an easy to use self-service tool built on top of our open data. Literally making our open data the heart of the service.
+
+As a result we needed to completely rip up our data practices and standardise to a new, coherent format for publishing
+
+To support this we also built a central unit to support the statisticians producing all of the data and set the standards for what to aim for. This is where my team sits and is how we've been able to build and implement the new standards on such a wide scale
+
+Finally, appreciating the value the user feedback gives us in being able to meet our user needs we decided to take an agile-based approach to the project, working iteratively and ensuring we get regular feedback from our users at every point so we can ensure we are always heading in the right direction.
+
+</div>
+
+# What did we learn
+
+## 1. Be unashamedly user focussed
+
+- Learn about your users first, think of your ideas second
+
+- Regularly go back to your users
+
+- User needs can change
+
+- Be ambitious
+
+- Everything will start to link up
+
+<div class="notes">
+Everything we've done, has been user focussed. It's easy to think you know best yourselves, but there's no substitute for hearing from the people who are using your service every single day and rely on what you produce
+
+Keep going back to them, get feedback on changes you're making and keep coming back to this central pillar of what users need
+
+Another reason to keep going back to them is that user needs can and do change, and you need to be flexible and stay up to date with that
+
+By focussing on user needs it's meant we can be ambitious, we can say that we're going revolutionise how over a hundred civil servants work, and then actually deliver that. You can do almost anything if there's a clearly evidenced need for it
+
+One thing we really found was that everything started to link up, standardising our data outputs, developing our new dissemination platform, improving how we write and analyse our data, improving the processes we follow in our area, and lots of other things all start to interweave and work together to achieve this ultimate goal of meeting the user needs. It's easy to see things as separate isolated projects but approaching it in this way really allowed us to see the bigger picture and how this one bit of work played into that. This helped give us momentum and extra weight when delivering the changes needed.
+
+</div>
+
+## 2. Remember that everyone is a user 
+
+- Analysts producing the data are users of our standards
+
+- Build around their needs
+
+- Utilise reproducible tools
+
+- Engage them and get their feedback
+
+<div class="notes">
+Analysts themselves are users too
+
+All of the standards and processes we've built including their needs, recognising barriers and pain points and actively putting effort in to address those
+
+One of the key things we've done is to build an R Shiny application to automatically screen any file in seconds, giving immediate feedback to analysts to allow them to understand and work to meet the standards. All files go through this before being uploaded to the service. 
+
+This had started off as me manually checking csv files, then built into a short R script, then into a bigger r project that spat out a html report, we hosted it on github and made it so that analysts could download and run it themselves, and eventually moved it all into a single application we hosted, meaning we could maintain a single source of the truth for everyone. This in itself is a really good example of iteratively building around our users needs, and remembering that when trying to enact change on a larger scale, the people who you're encouraging to change are users themselves
+
+By keeping them engaged and getting their feedback at every point, we've managed to standardise in a way that has made their lives easier, and actually reduced the burden rather than increased it.
+
+</div>
+
+## 3. Have a clear plan
+
+- Work backwards from the ideal
+
+- Break it into small, clear, manageable steps
+
+- Define the responsibility and ownership
+
+- Be open and transparent
+
+<div class="notes">
+
+Define the ideal, by all means be ambitious, we certainly were, but be clear on the end point at the start, it really helps to shape how you deliver. One of the bits of advice I've had for playing chess is similar, knight example
+
+Then once you have your ideal work your way back from there and take small manageable steps. We did this using agile techniques and focusses on iterative development, doing a little bit then opening it for feedback and repeating constantly. For our standards we decided to focus on the first big things - structure, and then aspects of the data we knew were common across every dataset that we could tackle, such as references to time and location
+
+Be clear about who owns the standards, who is the one person that will break deadlokcs and make a decision. Make it clear that it's based around user needs and that all users have some kind of ownership, I'll come onto how we did this more in the next slide, but making sure everyone was clear in the role they played, nothing was assumed, it was all very explicit, really helped whenever things did get difficult
+
+Finally, be open and transparent, it builds on from the last point, being open about decisions made and the rationale behind them was key for gaining the trust and respect needed to lead these changes. There were a number of points when I would have lost people and their buy in to this project if they hadn't been able to see why I was doing what I was doing
+
+</div>
+
+## 4. Community, community, community
+
+- Engage your users
+
+- Give stakeholders ownership
+
+- Built a common sense of purpose
+
+- Seek to learn more widely
+
+- Share your work
+
+<div class="notes">
+My rip off version of the well known property TV show, community really is key
+
+Firstly in terms of finding the community you serve, who are your users, what are their needs, this should be the bedrock of everything you do
+
+Then, particularly if you're trying to standardise across a huge group like us, ensure you build as a community and give stakeholders ownership in what you're doing. We did this by setting up a champions group with representatives from each area initially, and then built it up from there.
+
+Set up champions group to engage key stakeholders early on, build a common sense of purpose, bring them together and get to a community decision, keep engaged, build the feeling of ownership, taking the time to make decisions everyone had input into
+
+Always keeping open to learning from elsewhere, your community is much bigger than you think, a lot of these ideas came from outside statistics, such as data engineering and software development, it's amazing how applicable things can be across different domains
+
+Share your own work, as this helps you to connect with others and realise shared issues, finding shared solutions. Also just learning and getting to see a tonne of cool stuff that can prompt ideas
+
+</div>
+
+## 5. The power of tidy data
+
+Before
+
+| location | 2020_sec_pup | 2020_prim_pup |
+|-------------|------------------|---|
+| England | 589 | 457 |
+
+After
+
+| time_period | level | country_name | school_type | number_of_pupils |
+|-------------|--|-|-------------|------------------|
+| 2020 | National | England | Secondary | 589 |
+| 2020 | National | England | Primary | 457 |
+  
+## 5. The power of tidy data
+
+- Feels like common sense
+
+  - Every column is a single variable
+  
+  - Every row is a record from a location at a point in time
+
+- Saves incredible amounts of time for everyone
+
+- Allows for shared code and processes
+
+- Can apply across so much of our data
+
+- Already well established
+
+<div class="notes">
+The power of 'tidy data' (early on we  had a lot of people making exceptions, saying this would never fit their data, as of yet we've still not found any data we publish that this can't apply to, parallels to dimensions and facts in data warehouses used by data engineers)
+
+</div>
+
+# Where are we now
+
+<div class="notes">
+Demo
+
+Destinations before, download zip, number of excel tables
+
+After, condense the files
+
+Metadata pulled through
+
+EY example of platform
+
+Screen failing file
+
+Guidance
+
+GitHub
+
+</div>
+
+
+## Where are we now
+
+- All 56 publications, and 148 releases to date on our dissemination platform:
+
+  - Multitude of excel tables combined into fewer CSV files
+
+  - Follow a standard 'tidy' structure
+  
+  - Use standard references to time and locations
+
+  - Have consistent metadata
+
+  - Meet at least 3* for open data
+
+- Able to create and use template code
+
+- All users are happier
+
+<div class="notes">
+I've intentionally not talked through our standards in too much detail ass what is far less important than the why. The higher level changes are what have had the most impact, not the specifc names we've decided to give to our columns. If you have the why, you understand the needs of the users and follow their feedback, you approach the data project in the right way, consistently getting feedback from your users, then the what takes care of itself.
+
+We're working towards 5* open data, though 3 star meets the vast majority of our users needs, we haven't had feedback asking for more yet. 
+
+Everyone, from the analysts producing the data who can do their jobs much quicker and share code with other teams, breaking down their silos, to all of our different user groups who are  are much happier with where we are at, though, as with any service, the work is never done, which leads me onto the next slide
+
+</div>
+
+
+## Where we go next
+
+- Further standardisation and harmonisation
+
+- Developing a publicly accessible API for our data
+
+- Work towards 5* open data, csvw best practice
+
+- More potential for tools and products to be built on top of the foundation we've built
+
+<div class="notes">
+</div>
+
+## Tips to takeway 
+
+- Be ambitious and unashamedly work for your users' needs
+
+- Everyone is a user
+
+- Work backwards to construct a clearly defined plan
+
+- Community, community, community
+
+- Tidy your data
+
+
+<div class="notes">
+
+Never be afraid to challenge how things can be done better, if you're not delivering to your users needs you're not delivering at all. Plus if you work is based on feedback from users it's hard to go wrong and also much easier to get buy in and convince all the people you need to, to come along with you
+
+Everyone can be user, don't forget about the people who are doing the thing too
+
+Keep the scope and end goals clear, break the work into manageable and clear steps, work iteratively in an agile way
+
+Keeping the agile theme running, keep the community engaged, get regular feedback, get as many people as possible involved and with a shared sense of ownership in the project, and then also listen and actively take part in the wider data community, this is probably preaching to the choir given you're all involved in the DataConnect week, but share what you do as you'll be surprised how many people and areas of work share the same issues and problems, you never know who you might learn from, or who you might be able to help by sharing your own stories and projects
+
+Tidy data is so much easier to use and reuse, read more into tidy data if you're not already familiar
+
+</div>
+
+
+## Find out more
+
+Get in touch - cameron.race@education.gov.uk
+
+Read our [discovery report](https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/721729/HiveIT_-_DfE_dissemination_discovery.pdf)
+
+Use the data via our platform 
+
+https://explore-education-statistics.service.gov.uk/
+
+Look at our code and guidance
+
+https://github.com/dfe-analytical-services/
+
+Learn more about tidy data
+
+https://vita.had.co.nz/papers/tidy-data.pdf
+
+- Any questions
